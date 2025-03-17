@@ -1,0 +1,70 @@
+import React, { useState, useRef, useEffect } from "react";
+import { FaBars, FaPlus } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+
+const Header = ({ onToggleSidebar }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const location = useLocation();
+
+  const menuNames = {
+    "/home": "Mata Pelajaran",
+    "/tugas": "Daftar Tugas",
+    "/nilai-laporan": "Nilai & Laporan",
+    "/diskusi": "Diskusi",
+    "/pengumuman": "Pengumuman",
+    "/kalender": "Kalender",
+    "/jurnal-mengajar": "Jurnal Mengajar",
+  };
+
+  const currentMenu = menuNames[location.pathname] || "Halaman Tidak Diketahui";
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-gray-100 shadow-md">
+      <button className="text-gray-700 text-2xl" onClick={onToggleSidebar}>
+        <FaBars />
+      </button>
+
+      {/* Judul + Nama Menu */}
+      <h1 className="text-gray-700 font-semibold text-lg">
+        <span className="font-bold">SIBLENDIS</span> - <span className="text-blue-500">{currentMenu}</span>
+      </h1>
+
+      {/* Dropdown Button */}
+      <div className="relative" ref={dropdownRef}>
+        <button
+          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full shadow-sm"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          <FaPlus className="text-blue-500" />
+        </button>
+
+        {/* Dropdown Menu */}
+        {isDropdownOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden border">
+            <button className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700">
+              Membuat Kelas
+            </button>
+            <button className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700">
+              Gabung Kelas
+            </button>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
