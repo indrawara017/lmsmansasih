@@ -1,23 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars, FaPlus } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
 
-const Header = ({ onToggleSidebar }) => {
+const Header = ({ onToggleSidebar, currentPath }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const location = useLocation();
 
-  const menuNames = {
-    "/home": "Mata Pelajaran",
-    "/tugas": "Daftar Tugas",
-    "/nilai-laporan": "Nilai & Laporan",
-    "/diskusi": "Diskusi",
-    "/pengumuman": "Pengumuman",
-    "/kalender": "Kalender",
-    "/jurnal-mengajar": "Jurnal Mengajar",
-  };
-
-  const currentMenu = menuNames[location.pathname] || "Halaman Tidak Diketahui";
+  // Jika berada di halaman login, jangan tampilkan Header
+  if (currentPath === "/login") return null;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -37,9 +26,9 @@ const Header = ({ onToggleSidebar }) => {
         <FaBars />
       </button>
 
-      {/* Judul + Nama Menu */}
+      {/* Judul Aplikasi */}
       <h1 className="text-gray-700 font-semibold text-lg">
-        <span className="font-bold">SIBLENDIS</span> - <span className="text-blue-500">{currentMenu}</span>
+        <span className="font-bold">SIBLENDIS</span>
       </h1>
 
       {/* Dropdown Button */}
