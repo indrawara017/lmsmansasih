@@ -7,13 +7,13 @@ const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
-  const isLoginPage = location.pathname === "/";
+  const hideHeader = location.pathname === "/" || location.pathname === "/register";
 
   return (
     <div>
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div>
-        {!isLoginPage && <Header onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />}
+        {!hideHeader && <Header onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />}
         <main>{children}</main>
       </div>
     </div>
