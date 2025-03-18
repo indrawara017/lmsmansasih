@@ -20,7 +20,7 @@ const AddClass = () => {
   ];
   
   const classLevels = ["X", "XI", "XII"];
-  const rooms = ["A", "B", "C", "D", "E", "F", "G"];
+  const rooms = ["A", "B", "C", "D"];
 
   const generateClassCode = () => {
     return Math.random().toString(36).substring(2, 8).toUpperCase();

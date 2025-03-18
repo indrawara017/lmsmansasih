@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import subjectCovers, { defaultCover } from "../data/subjectCovers"; // 🔹 Import dari file terpisah
+import subjectCovers, { defaultCover } from "../data/subjectCovers";
 
-const SubjectCard = ({ classId, subject, grade, teacher }) => {
+const SubjectCard = ({ classId, subject, grade, teacher, room }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/class/${classId}`);
@@ -16,7 +16,7 @@ const SubjectCard = ({ classId, subject, grade, teacher }) => {
       {/* 🔹 Gambar Mata Pelajaran */}
       <div className="w-full aspect-w-16 aspect-h-9 bg-gray-100">
         <img
-          src={subjectCovers[subject] || defaultCover} // 🔹 Gunakan gambar sesuai mata pelajaran atau default
+          src={subjectCovers[subject] || defaultCover}
           alt={subject}
           className="w-full h-full object-cover rounded-t-xl"
         />
@@ -25,7 +25,7 @@ const SubjectCard = ({ classId, subject, grade, teacher }) => {
       {/* 🔹 Konten */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">{subject}</h3>
-        <p className="text-sm text-gray-600 mt-1">Kelas : {grade}</p>
+        <p className="text-sm text-gray-600 mt-1">Kelas : {grade} {room}</p>
         <p className="text-sm text-gray-500 mt-1">Guru : {teacher}</p>
       </div>
     </div>

@@ -10,7 +10,6 @@ const Home = () => {
   const [joinedClasses, setJoinedClasses] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Cek status login pengguna
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -18,7 +17,6 @@ const Home = () => {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 Ambil daftar kelas jika user tersedia
   useEffect(() => {
     if (!user) return;
 
@@ -63,6 +61,7 @@ const Home = () => {
                   key={kelas.id}
                   classId={kelas.id}
                   subject={kelas.subject}
+                  room={kelas.room}
                   grade={kelas.classLevel}
                   teacher={kelas.createdBy}
                 />
@@ -82,6 +81,7 @@ const Home = () => {
                   classId={kelas.id}
                   subject={kelas.subject}
                   grade={kelas.classLevel}
+                  room={kelas.room}
                   teacher={kelas.createdBy}
                 />
               ))}

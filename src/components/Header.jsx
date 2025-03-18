@@ -22,14 +22,18 @@ const Header = ({ onToggleSidebar, currentPath }) => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-3 bg-gray-100 shadow-md">
+    <header className="fixed top-0 left-0 w-full flex items-center justify-between px-4 py-3 bg-gray-100 shadow-md">
       <button className="text-gray-700 text-2xl" onClick={onToggleSidebar}>
         <FaBars />
       </button>
-
-      <h1 className="text-gray-700 font-semibold text-lg">
+      <div className="flex-col">
+      <h1 className="text-gray-700 text-2xl font-semibold text-center" style={{ fontFamily: "'Black Ops One', reguler" }}>
         <span className="font-bold">SIBLENDIS</span>
       </h1>
+      {/* <h1 className="text-gray-700 text-x font-semibold text-center" style={{ fontFamily: "'Black Ops One', reguler" }}>
+        <span className="font-bold">SISTEM INTEGRASI BLENDED LEARNING </span>
+      </h1> */}
+      </div>
 
       <div className="relative" ref={dropdownRef}>
         <button
