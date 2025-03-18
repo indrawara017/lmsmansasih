@@ -8,7 +8,7 @@ import {
 } from "../firebase";
 import Modal from "./Modal";
 import leftPanelImage from "../assets/left-panel-image.jpg";
-import logo from "../assets/logosma.png";
+import logo from "../assets/blensasih large.png";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -85,10 +85,10 @@ const Register = () => {
         <img src={leftPanelImage} alt="Left Panel" className="w-full" />
       </div>
       <div className="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
-        <div className="max-w-md w-full p-2">
-          <img src={logo} alt="Logo" className="h-52 w-52 mx-auto mb-1" />
-          <h1 className="text-1xl font-bold mb-1 text-black text-center">SIBLENDIS</h1>
-          <h1 className="text-1xl font-semibold mb-0 text-black text-center">SISTEM INTEGRASI BLENDED LEARNING</h1>
+        <div className="max-w-md w-full p-10">
+          <img src={logo} alt="Logo" className="h-52 w-71 mx-auto" />
+          <h1 className="text-1xl font-bold mb-1 text-black text-center">BLENSASIH</h1>
+          <h1 className="text-1xl font-semibold mb-0 text-black text-center">BLENDED LEARNING</h1>
           <h1 className="text-1xl font-semibold mb-4 text-black text-center">SMA NEGERI 1 SUMBERASIH</h1>
           <div onClick={handleGoogleLogin} className="w-full mb-2 lg:mb-0">
             <button type="button" className="w-full flex justify-center items-center gap-2 bg-white text-sm text-gray-600 p-2 rounded-md hover:bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors duration-300">

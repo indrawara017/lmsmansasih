@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBook, FaChartBar, FaUser, FaBell, FaTasks, FaCog, FaSignOutAlt } from "react-icons/fa";
-import logo from "../assets/logo2.jpg";
+import logo from "../assets/blensasih large.png";
 
 const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
@@ -30,7 +30,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex flex-col items-center py-6">
           <img
             src={logo}
-            className="w-32 h-32 cursor-pointer"
+            className="w-62 h-62 cursor-pointer"
             alt="Logo"
             onClick={() => {
               navigate("/home");
