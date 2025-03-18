@@ -27,7 +27,7 @@ const Header = ({ onToggleSidebar, currentPath }) => {
         <FaBars />
       </button>
       <div className="flex-col">
-      <h1 className="text-gray-700 text-2xl font-semibold text-center" style={{ fontFamily: "'Black Ops One', reguler" }}>
+      <h1 className="text-gray-700 text-2xl font-blackOps font-semibold text-center">
         <span className="font-bold">SIBLENDIS</span>
       </h1>
       {/* <h1 className="text-gray-700 text-x font-semibold text-center" style={{ fontFamily: "'Black Ops One', reguler" }}>
