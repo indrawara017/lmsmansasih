@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
 } from "../firebase";
 import Modal from "./Modal";
-import leftPanelImage from "../assets/left-panel-image.jpg";
+import leftPanelImage from "../assets/left.jpg";
 import logo from "../assets/blensasih large.png";
 
 const Register = () => {
@@ -80,16 +80,16 @@ const Register = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="hidden lg:flex items-center justify-center flex-1 bg-white text-black">
-        <img src={leftPanelImage} alt="Left Panel" className="w-full" />
+    <div className="flex h-screen bg-white">
+      <div className="hidden lg:flex items-center justify-center flex-1">
+        <img src={leftPanelImage} className="w-[1100px] h-full" />
       </div>
-      <div className="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
-        <div className="max-w-md w-full p-10">
-          <img src={logo} alt="Logo" className="h-52 w-71 mx-auto" />
-          <h1 className="text-1xl font-bold mb-1 text-black text-center">BLENSASIH</h1>
-          <h1 className="text-1xl font-semibold mb-0 text-black text-center">BLENDED LEARNING</h1>
-          <h1 className="text-1xl font-semibold mb-4 text-black text-center">SMA NEGERI 1 SUMBERASIH</h1>
+      <div className="w-full lg:w-1/2 flex items-center justify-center">
+        <div className="max-w-md w-full p-14">
+          <img src={logo} alt="Logo" className="h-40 w-60 mx-auto" />
+          <h1 className="text-lg font-bold mb-1 text-black text-center">BLENSASIH</h1>
+          <h1 className="text-lg font-semibold mb-0 text-black text-center">BLENDED LEARNING</h1>
+          <h1 className="text-lg font-semibold mb-4 text-black text-center">SMA NEGERI 1 SUMBERASIH</h1>
           <div onClick={handleGoogleLogin} className="w-full mb-2 lg:mb-0">
             <button type="button" className="w-full flex justify-center items-center gap-2 bg-white text-sm text-gray-600 p-2 rounded-md hover:bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors duration-300">
               <svg viewBox="0 0 512 512" className="w-4" id="google">
@@ -140,17 +140,13 @@ const Register = () => {
 
           <div className="mt-4 text-sm text-gray-600 text-center">
             <p>
-              Already have an account?
+              Sudah mempunyai akun?
               <Link to="/" className="text-black hover:underline">
                 {" "}
-                Login here
+                Masuk disini
               </Link>
             </p>
           </div>
-
-          <Modal show={showModal} handleClose={() => setShowModal(false)}>
-            <p>{error}</p>
-          </Modal>
         </div>
       </div>
     </div>
