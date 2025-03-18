@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ onToggleSidebar, currentPath }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Jika berada di halaman login, jangan tampilkan Header
   if (currentPath === "/login") return null;
 
   useEffect(() => {
@@ -26,12 +27,10 @@ const Header = ({ onToggleSidebar, currentPath }) => {
         <FaBars />
       </button>
 
-      {/* Judul Aplikasi */}
       <h1 className="text-gray-700 font-semibold text-lg">
         <span className="font-bold">SIBLENDIS</span>
       </h1>
 
-      {/* Dropdown Button */}
       <div className="relative" ref={dropdownRef}>
         <button
           className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full shadow-sm"
@@ -40,13 +39,18 @@ const Header = ({ onToggleSidebar, currentPath }) => {
           <FaPlus className="text-blue-500" />
         </button>
 
-        {/* Dropdown Menu */}
         {isDropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden border">
-            <button className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700">
+            <button
+              onClick={() => navigate("/tambah-kelas")}
+              className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700"
+            >
               Membuat Kelas
             </button>
-            <button className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700">
+            <button
+              onClick={() => navigate("/gabung-kelas")}
+              className="w-full px-4 py-2 text-left hover:bg-gray-200 text-gray-700"
+            >
               Gabung Kelas
             </button>
           </div>

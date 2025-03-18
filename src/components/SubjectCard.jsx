@@ -1,16 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import subjectCovers, { defaultCover } from "../data/subjectCovers"; // 🔹 Import dari file terpisah
 
-const SubjectCard = ({ subject, grade, image, teacher }) => {
+const SubjectCard = ({ classId, subject, grade, teacher }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/class/${classId}`);
+  };
+
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      {/* Gambar */}
-      <img src={image} alt={subject} className="w-full object-cover" />
+    <div
+      onClick={handleClick}
+      className="cursor-pointer bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+    >
+      {/* 🔹 Gambar Mata Pelajaran */}
+      <div className="w-full aspect-w-16 aspect-h-9 bg-gray-100">
+        <img
+          src={subjectCovers[subject] || defaultCover} // 🔹 Gunakan gambar sesuai mata pelajaran atau default
+          alt={subject}
+          className="w-full h-full object-cover rounded-t-xl"
+        />
+      </div>
 
-      {/* Informasi Mata Pelajaran */}
-      <div className="p-1 text-center">
-        <h2 className="text-lg font-semibold text-gray-800">{subject}</h2>
-        <p className="text-sm text-gray-600">Kelas: {grade}</p>
-        <p className="text-sm text-gray-600">Guru: {teacher}</p>
+      {/* 🔹 Konten */}
+      <div className="p-4">
+        <h3 className="text-lg font-semibold text-gray-800">{subject}</h3>
+        <p className="text-sm text-gray-600 mt-1">Kelas : {grade}</p>
+        <p className="text-sm text-gray-500 mt-1">Guru : {teacher}</p>
       </div>
     </div>
   );

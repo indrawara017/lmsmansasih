@@ -1,41 +1,94 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db, auth } from "../firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import SubjectCard from "./SubjectCard";
-import agamaImage from "../assets/agama.png";
-import biologiImage from "../assets/biologi.png";
-import ekonomiImage from "../assets/ekonomi.png";
-import fisikaImage from "../assets/fisika.png";
-import geografiImage from "../assets/geografi.png";
-import indonesiaImage from "../assets/indonesia.png";
-import informatikaImage from "../assets/informatika.png";
-import inggrisImage from "../assets/inggris.png";
-
-
-
-const subjects = [
-  { subject: "Pendidikan Agama Islam", grade: "XI", image: agamaImage, teacher: "Indra Wardana" },
-  { subject: "Biologi", grade: "X", image: biologiImage, teacher: "Indra Wardana" },
-  { subject: "Ekonomi", grade: "XI", image: ekonomiImage, teacher: "Indra Wardana" },
-  { subject: "Fisika", grade: "XI", image: fisikaImage, teacher: "Indra Wardana" },
-  { subject: "Geografi", grade: "XI", image: geografiImage, teacher: "Indra Wardana" },
-  { subject: "Bahasa Indonesia", grade: "XI", image: indonesiaImage, teacher: "Indra Wardana" },
-  { subject: "Informatika", grade: "XI", image: informatikaImage, teacher: "Indra Wardana" },
-  { subject: "Bahasa Inggris", grade: "XI", image: inggrisImage, teacher: "Indra Wardana" },
-];
 
 const Home = () => {
+  const [user, setUser] = useState(null);
+  const [createdClasses, setCreatedClasses] = useState([]);
+  const [joinedClasses, setJoinedClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 🔹 Cek status login pengguna
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // 🔹 Ambil daftar kelas jika user tersedia
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchClasses = async () => {
+      setLoading(true);
+      try {
+        const createdQuery = query(collection(db, "classes"), where("creatorId", "==", user.uid));
+        const joinedQuery = query(collection(db, "classes"), where("participants", "array-contains", user.uid));
+
+        const [createdSnapshot, joinedSnapshot] = await Promise.all([
+          getDocs(createdQuery),
+          getDocs(joinedQuery),
+        ]);
+
+        setCreatedClasses(createdSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        setJoinedClasses(joinedSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      } catch (error) {
+        console.error("Error mengambil data kelas:", error);
+      }
+      setLoading(false);
+    };
+
+    fetchClasses();
+  }, [user]);
+
   return (
-    <div className="p-6 py-15">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {subjects.map((subject, index) => (
-          <SubjectCard
-            key={index}
-            subject={subject.subject}
-            grade={subject.grade}
-            image={subject.image}
-            teacher={subject.teacher}
-          />
-        ))}
-      </div>
+    <div className="p-6">
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <p className="text-gray-600 text-lg">Loading data...</p>
+        </div>
+      ) : (
+        <>
+          {/* 🔹 Kelas yang Dibuat */}
+          <h2 className="text-xl font-semibold mb-3">Kelas yang Dibuat</h2>
+          {createdClasses.length === 0 ? (
+            <p className="text-gray-500">Anda belum membuat kelas.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {createdClasses.map((kelas) => (
+                <SubjectCard
+                  key={kelas.id}
+                  classId={kelas.id}
+                  subject={kelas.subject}
+                  grade={kelas.classLevel}
+                  teacher={kelas.createdBy}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* 🔹 Kelas yang Diikuti */}
+          <h2 className="text-xl font-semibold mt-6 mb-3">Kelas yang Diikuti</h2>
+          {joinedClasses.length === 0 ? (
+            <p className="text-gray-500">Anda belum bergabung ke kelas.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {joinedClasses.map((kelas) => (
+                <SubjectCard
+                  key={kelas.id}
+                  classId={kelas.id}
+                  subject={kelas.subject}
+                  grade={kelas.classLevel}
+                  teacher={kelas.createdBy}
+                />
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
