@@ -45,7 +45,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             { to: "/nilai-laporan", label: "Nilai & Laporan", icon: <FaChartBar /> },
             { to: "/pengumuman", label: "Pengumuman", icon: <FaBell /> },
             { to: "/jurnal-mengajar", label: "Jurnal Mengajar", icon: <FaTasks /> },
-            { to: "/Profil", label: "Profil", icon: <FaUser /> }
+            { to: "/Profile", label: "Profil", icon: <FaUser /> }
           ].map((item) => (
             <li key={item.to} onClick={onClose}>
               <Link

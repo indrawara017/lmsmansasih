@@ -8,6 +8,7 @@ import AddClass from "./components/AddClass";
 import JoinClass from "./components/JoinClass";
 import ClassPage from "./components/ClassPage";
 import JurnalMengajar from "./components/JurnalMengajar";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/tambah-kelas" element={<AddClass />} />
           <Route path="/gabung-kelas" element={<JoinClass />} />
           <Route path="/class/:classId" element={<ClassPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/jurnal-mengajar" element={<JurnalMengajar />} />
         </Routes>
       </Layout>
