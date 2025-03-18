@@ -71,7 +71,7 @@ const Login = () => {
       </div>
       <div className="w-full lg:w-1/2 flex items-center justify-center">
         <div className="max-w-md w-full p-14">
-          <img src={logo} alt="Logo" className="h-40 w-60 mx-auto" />
+          <img src={logo} alt="Logo" className="h-50 w-50 mx-auto" />
           <h1 className="text-lg font-bold mb-1 text-black text-center">BLENSASIH</h1>
           <h1 className="text-lg font-semibold mb-0 text-black text-center">BLENDED LEARNING</h1>
           <h1 className="text-lg font-semibold mb-4 text-black text-center">SMA NEGERI 1 SUMBERASIH</h1>

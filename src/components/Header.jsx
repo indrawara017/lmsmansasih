@@ -28,7 +28,7 @@ const Header = ({ onToggleSidebar, currentPath }) => {
       </button>
       <div className="flex-col">
       <h1 className="text-gray-700 text-2xl font-blackOps font-semibold text-center">
-        <span className="font-bold">SIBLENDIS</span>
+        <span className="font-bold">BLENSASIH</span>
       </h1>
       {/* <h1 className="text-gray-700 text-x font-semibold text-center" style={{ fontFamily: "'Black Ops One', reguler" }}>
         <span className="font-bold">SISTEM INTEGRASI BLENDED LEARNING </span>
