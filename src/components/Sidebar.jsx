@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaBook, FaClipboardList, FaChartBar, FaComments, FaBell, FaTasks, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { FaBook, FaChartBar, FaUser, FaBell, FaTasks, FaCog, FaSignOutAlt } from "react-icons/fa";
 import logo from "../assets/logo2.jpg";
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -42,11 +42,10 @@ const Sidebar = ({ isOpen, onClose }) => {
         <ul className="mt-4 space-y-2">
           {[
             { to: "/home", label: "Mata Pelajaran", icon: <FaBook /> },
-            { to: "/tugas", label: "Daftar Tugas", icon: <FaClipboardList /> },
             { to: "/nilai-laporan", label: "Nilai & Laporan", icon: <FaChartBar /> },
-            { to: "/diskusi", label: "Diskusi", icon: <FaComments /> },
             { to: "/pengumuman", label: "Pengumuman", icon: <FaBell /> },
-            { to: "/jurnal-mengajar", label: "Jurnal Mengajar", icon: <FaTasks /> }
+            { to: "/jurnal-mengajar", label: "Jurnal Mengajar", icon: <FaTasks /> },
+            { to: "/Profil", label: "Profil", icon: <FaUser /> }
           ].map((item) => (
             <li key={item.to} onClick={onClose}>
               <Link
@@ -64,10 +63,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         {/* Tombol Profil & Logout */}
         <div className="absolute bottom-4 w-full px-3">
-          <button className="w-full flex items-center justify-center space-x-2 p-3 border border-gray-400 rounded-lg hover:bg-gray-100" onClick={onClose}>
-            <FaCog />
-            <span>Profil</span>
-          </button>
           <button
             className="w-full mt-2 p-3 bg-red-600 text-white rounded-lg hover:bg-red-500 flex items-center justify-center space-x-2"
             onClick={() => {
