@@ -1,0 +1,9 @@
+git add .
+echo "# lmsmansasih" >> README.md
+git init
+
+
+
+git add .
+git commit -m "lanjut besok"
+git push -u origin main
