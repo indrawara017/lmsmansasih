@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import subjectCovers, { defaultCover } from "../data/subjectCovers";
+import defaultAvatar from "../assets/logo1.jpg";
 
-const SubjectCard = ({ classId, subject, grade, teacher, room }) => {
+const SubjectCard = ({ classId, subject, grade, teacher, room, teacherPhoto }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/class/${classId}`);
@@ -25,8 +26,17 @@ const SubjectCard = ({ classId, subject, grade, teacher, room }) => {
       {/* 🔹 Konten */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">{subject}</h3>
-        <p className="text-sm text-gray-600 mt-1">Kelas : {grade} {room}</p>
-        <p className="text-sm text-gray-500 mt-1">Guru : {teacher}</p>
+        <p className="text-sm text-gray-600 mt-1">Kelas: {grade} {room}</p>
+
+        {/* 🔹 Guru */}
+        <div className="flex items-center mt-2">
+          <img
+            src={teacherPhoto || defaultAvatar}
+            alt={teacher}
+            className="w-8 h-8 rounded-full object-cover border border-gray-300"
+          />
+          <p className="text-sm text-gray-500 ml-2">Guru: {teacher}</p>
+        </div>
       </div>
     </div>
   );
