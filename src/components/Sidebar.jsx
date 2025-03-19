@@ -64,14 +64,14 @@ const Sidebar = ({ isOpen, onClose }) => {
         {/* Tombol Profil & Logout */}
         <div className="absolute bottom-4 w-full px-3">
           <button
-            className="w-full mt-2 p-3 bg-red-600 text-white rounded-lg hover:bg-red-500 flex items-center justify-center space-x-2"
+            className="flex items-center space-x-3 p-3 rounded-lg mx-5 transition-colors"
             onClick={() => {
               handleLogout();
               onClose();
             }}
           >
             <FaSignOutAlt />
-            <span>Log Out</span>
+            <span>Keluar</span>
           </button>
         </div>
       </div>

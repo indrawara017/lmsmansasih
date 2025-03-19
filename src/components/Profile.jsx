@@ -115,11 +115,11 @@ const Profile = () => {
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl">
+    <div className="max-w-md mx-auto mt-5 p-10 bg-white shadow-lg rounded-xl">
       <h2 className="text-2xl font-bold text-center text-gray-800">Profil</h2>
 
-      <div className="flex flex-col items-center mt-4">
-        <div className="w-24 h-24 rounded-full bg-gray-300 border-4 border-gray-400 overflow-hidden">
+      <div className="flex flex-col items-center mt-2">
+        <div className="w-24 h-24 rounded-ful overflow-hidden">
           {photoPreview ? (
             <img src={photoPreview} alt="Foto Profil" className="w-full h-full object-cover" />
           ) : (
