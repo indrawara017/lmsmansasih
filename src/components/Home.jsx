@@ -12,7 +12,15 @@ const Home = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      if (user) {
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL || "https://via.placeholder.com/150", // Default jika tidak ada foto
+        });
+      } else {
+        setUser(null);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -64,6 +72,7 @@ const Home = () => {
                   room={kelas.room}
                   grade={kelas.classLevel}
                   teacher={kelas.createdBy}
+                  photoURL={kelas.teacherPhotoURL || user.photoURL} // Ambil dari Firestore, fallback ke user
                 />
               ))}
             </div>
@@ -83,6 +92,7 @@ const Home = () => {
                   grade={kelas.classLevel}
                   room={kelas.room}
                   teacher={kelas.createdBy}
+                  photoURL={kelas.teacherPhotoURL || "https://via.placeholder.com/150"}
                 />
               ))}
             </div>

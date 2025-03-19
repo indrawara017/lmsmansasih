@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import subjectCovers, { defaultCover } from "../data/subjectCovers";
 import defaultAvatar from "../assets/logo1.jpg";
 
-const SubjectCard = ({ classId, subject, grade, teacher, room, teacherPhoto }) => {
+const SubjectCard = ({ classId, subject, grade, teacher, room, photoURL }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/class/${classId}`);
   };
+
+  // 🔹 Validasi photoURL agar tidak broken
+  const validPhotoURL =
+    photoURL && photoURL.startsWith("http") ? photoURL : defaultAvatar;
 
   return (
     <div
@@ -31,9 +35,10 @@ const SubjectCard = ({ classId, subject, grade, teacher, room, teacherPhoto }) =
         {/* 🔹 Guru */}
         <div className="flex items-center mt-2">
           <img
-            src={teacherPhoto || defaultAvatar}
-            alt={teacher}
+            src={validPhotoURL}
+            alt={`Foto profil ${teacher}`}
             className="w-8 h-8 rounded-full object-cover border border-gray-300"
+            onError={(e) => (e.target.src = defaultAvatar)} // Handle jika URL rusak
           />
           <p className="text-sm text-gray-500 ml-2">Guru: {teacher}</p>
         </div>
