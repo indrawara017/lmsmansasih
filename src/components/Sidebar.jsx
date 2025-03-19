@@ -27,10 +27,10 @@ const Sidebar = ({ isOpen, onClose }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col items-center py-6">
+        <div className="flex flex-col items-center py-1">
           <img
             src={logo}
-            className="w-62 h-62 cursor-pointer"
+            className="w-52 h-52 cursor-pointer"
             alt="Logo"
             onClick={() => {
               navigate("/home");
@@ -39,7 +39,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           />
         </div>
 
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-1 space-y-2">
           {[
             { to: "/home", label: "Mata Pelajaran", icon: <FaBook /> },
             { to: "/nilai-laporan", label: "Nilai & Laporan", icon: <FaChartBar /> },
@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <li key={item.to} onClick={onClose}>
               <Link
                 to={item.to}
-                className={`flex items-center space-x-3 p-3 rounded-lg mx-3 transition-colors ${
+                className={`flex items-center space-x-3 p-3 rounded-lg mx-5 transition-colors ${
                   location.pathname === item.to ? "bg-sky-900 text-white" : "hover:bg-gray-200"
                 }`}
               >
